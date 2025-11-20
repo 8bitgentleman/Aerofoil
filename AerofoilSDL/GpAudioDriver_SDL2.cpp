@@ -571,7 +571,7 @@ bool GpAudioDriver_SDL2::Init()
 
 	requestedSpec.callback = GpAudioDriver_SDL2::StaticMixAudio;
 	requestedSpec.channels = 1;
-	requestedSpec.format = AUDIO_S16;
+	requestedSpec.format = AUDIO_S16SYS;
 	requestedSpec.freq = m_properties.m_sampleRate;
 	requestedSpec.samples = kMixChunkSamples;
 	requestedSpec.userdata = this;
