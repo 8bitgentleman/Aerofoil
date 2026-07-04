@@ -3,9 +3,10 @@ Put 7-zip's "7z.exe" and "7z.dll" in the "tools" directory
 
 Build the Aerofoil.sln project in release mode in Visual Studio
 
-Open a command prompt with administrator privileges
-Change the directory to the AerofoilAndroid directory
-Run make_symlinks.bat
+Assemble the native source tree via symlinks:
+  Windows: open an administrator command prompt, cd to AerofoilAndroid, run make_symlinks.bat
+  Linux/macOS: run ./make_symlinks.sh from the AerofoilAndroid directory
+(Undo with remove_symlinks.bat / remove_symlinks.sh.)
 
 First time, and any time data changes:
 Run ConvertResources.bat in the root directory
@@ -14,6 +15,20 @@ Run copy_packaged_resources.bat in the AerofoilAndroid directory
 First time, and any time source changes:
 Run copy_source_package.bat in the AerofoilAndroid directory
 
+Toolchain (build tooling modernized 2026):
+- Android Studio: Koala (2024.1.1) or newer, which ships a compatible JDK 17.
+- JDK 17 (required to run Gradle / the Android Gradle Plugin). No JDK downgrade
+  is needed anymore -- the old "downgrade the JDK to 11" step is obsolete.
+- Android Gradle Plugin 8.6.1, Gradle 8.7 (via the wrapper).
+- Android SDK Platform 34, Build-Tools 34.0.0.
+- NDK 26.3.11579264 (r26d), pinned via ndkVersion in app/build.gradle. Install it
+  through the SDK Manager (SDK Tools tab -> "Show Package Details" -> NDK 26.3.x),
+  or with:
+      sdkmanager "ndk;26.3.11579264"
+
 Install Android Studio
-Open the AerofoilAndroid directory as a project
-Downgrade the JDK to version 11 in the SDK settings
+Open the AerofoilAndroid directory as a project, let it sync, then Build > Make.
+
+Command-line build (SDK + the pinned NDK installed, JDK 17 on PATH):
+  cd AerofoilAndroid
+  ./gradlew assembleDebug      # or assembleRelease

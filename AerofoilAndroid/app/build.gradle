@@ -8,18 +8,20 @@ else {
 }
 
 android {
+    namespace 'org.thecodedeposit.aerofoil'
     compileSdkVersion 34
+    ndkVersion '26.3.11579264'
     defaultConfig {
         if (buildAsApplication) {
             applicationId "org.thecodedeposit.aerofoil"
         }
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 34
         versionCode 20
         versionName "1.1.6"
         externalNativeBuild {
             ndkBuild {
-                arguments "APP_PLATFORM=android-16"
+                arguments "APP_PLATFORM=android-21"
                 abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
             }
             // cmake {
@@ -50,7 +52,7 @@ android {
         }
        
     }
-    lintOptions {
+    lint {
         abortOnError false
     }
     
@@ -66,7 +68,7 @@ android {
         }
     }
 
-    aaptOptions {
+    androidResources {
         noCompress 'gpf'
     }
     
