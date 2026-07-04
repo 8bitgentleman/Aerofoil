@@ -52,6 +52,10 @@ SDL2-2.30.5/sdl2-config
 SDL2-2.30.5/test/*
 install_manifest.txt
 
+## Repo-root SDL2 alias created by AerofoilAndroid/make_symlinks.sh for the
+## Linux/macOS ndkBuild native build (points at SDL2-2.30.5).
+/SDL2
+
 ## macOS
 .DS_Store
 
